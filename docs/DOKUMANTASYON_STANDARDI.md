@@ -123,7 +123,7 @@ Bu standart **tüm ekip üyeleri** için geçerlidir:
 | Üye | E-posta |
 |---|---|
 | MEHMET ALİ KIRAÇÇAKALI | 250541069@firat.edu.tr |
-| KAAN MERT KEKLİK | — |
+| KAAN MERT KEKLİK | 250541053@firat.edu.tr |
 | ARDA ÖZCAN ÇİFCİ | 250542012@firat.edu.tr |
 | MELİK BUĞRA KARA | 250541110@firat.edu.tr |
 | MERYEM ABDURRAHMAN | 250541605@firat.edu.tr |
