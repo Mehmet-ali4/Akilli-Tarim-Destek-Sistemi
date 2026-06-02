@@ -1,0 +1,74 @@
+services:
+
+  # ── PostgreSQL Veritabanı ──────────────────────────────────────────────────
+  db:
+    image: postgres:15-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: akilli_tarim
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-admin}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./backend/db/schema_postgresql.sql:/docker-entrypoint-initdb.d/01_schema.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d akilli_tarim"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    networks:
+      - tarim_net
+
+  # ── Python AI Servisi ──────────────────────────────────────────────────────
+  ai_engine:
+    build:
+      context: ./ai_engine
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    volumes:
+      # Eğitilmiş model dosyaları container dışından bağlanır
+      - ./ai_engine/artifacts:/app/artifacts
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:5000/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+    networks:
+      - tarim_net
+
+  # ── Node.js Backend ────────────────────────────────────────────────────────
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      PORT: 3000
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_NAME: akilli_tarim
+      DB_USER: postgres
+      DB_PASSWORD: ${DB_PASSWORD:-admin}
+      AI_SERVICE_URL: http://ai_engine:5000/predict
+      AI_IMAGE_URL: http://ai_engine:5000/analyze-image
+      JWT_SECRET: ${JWT_SECRET:-akilli_tarim_gizli_docker}
+      JWT_EXPIRES_IN: ${JWT_EXPIRES_IN:-7d}
+      OPENWEATHER_API_KEY: ${OPENWEATHER_API_KEY:-}
+      API_KEY: ${API_KEY:-}
+    depends_on:
+      db:
+        condition: service_healthy
+      ai_engine:
+        condition: service_healthy
+    networks:
+      - tarim_net
+
+volumes:
+  postgres_data:
+
+networks:
+  tarim_net:
+    driver: bridge
