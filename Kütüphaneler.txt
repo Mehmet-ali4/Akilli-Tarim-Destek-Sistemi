@@ -1,14 +1,12 @@
 AKILLI TARIM SİSTEMİ - GEREKLİ KÜTÜPHANELER LİSTESİ
 
-1. axios - API üzerinden hava durumu verilerini çekmek için kullanılır.
-2. chart.js - Sensörlerden gelen toprak analiz verilerini görselleştirmek için kullanılır.
-3. leaflet - Tarla bazlı konumlandırma ve harita gösterimi için kullanılır.
-4. dotenv - API anahtarları gibi hassas verileri güvenli yönetmek için kullanılır.
-5. date-fns - Tarımsal takvim ve sulama zamanlaması için tarih işlemlerini kolaylaştırır.
-
+1. axios - API üzerinden hava durumu verilerini çekmek ve frontend-backend iletişimini sağlamak için kullanılır.
+2. dotenv - API anahtarları gibi hassas verileri güvenli yönetmek için kullanılır.
+3. express - Backend sunucusunu oluşturmak ve API yönlendirmelerini yönetmek için kullanılır.
+4. cors - Farklı portlarda çalışan frontend, backend ve AI servisleri arasında kaynak paylaşımına izin vermek için kullanılır.
 
 YAPAY ZEKA VE MAKİNE ÖĞRENMESİ KATMANI
-1. scikit-learn - Toprak nemi ve bitki verimliliği tahmin modelleri için.
-2. pandas - Sensör verilerini analiz edilebilir tablolara dönüştürmek için.
-3. flask veya fastapi - Python'daki yapay zeka modelini JavaScript arayüzüne bağlamak (API oluşturmak) için.
-4. joblib - Eğitilen modeli kaydedip hızlıca çalıştırmak için.
+1. tensorflow & keras - Derin öğrenme tabanlı tahmin modelleri oluşturmak ve eğitmek için.
+2. numpy - Sensör verilerini ve matematiksel hesaplamaları yapmak için.
+3. flask - Python'daki yapay zeka modelini bir web servisi olarak (API) sunmak için.
+4. flask-cors - Python servisinin Node.js backend'i ile haberleşebilmesi için.

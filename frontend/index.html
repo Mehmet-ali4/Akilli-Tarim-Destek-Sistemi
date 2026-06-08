@@ -3,31 +3,225 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Akıllı Tarım Destek Sistemi</title>
+    <meta name="description" content="Yapay zeka destekli akıllı tarım karar destek sistemi - Hava durumu, toprak analizi ve bitki sağlığı verileriyle tarımsal öneriler">
+    <title>Akıllı Tarım Destek Sistemi | AI Destekli</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <header>
-        <h1>Akıllı Tarım Destek Sistemi</h1>
-        <nav>
-            <ul>
-                <li><a href="#">Ana Sayfa</a></li>
-                <li><a href="#">Sistem Durumu</a></li>
-                <li><a href="#">Yapay Zeka Analizi</a></li>
-            </ul>
-        </nav>
-    </header>
-    
-    <main>
-        <section id="dashboard">
-            <h2>Sistem Paneli</h2>
-            <p>Sera sensör verileri ve yapay zeka tahminleri burada görüntülenecektir.</p>
-        </section>
-    </main>
+    <!-- Animated Background -->
+    <div class="bg-gradient"></div>
 
-    <footer>
-        <p>&copy; 2026 Akıllı Tarım Destek Sistemi</p>
-    </footer>
+    <!-- Floating Leaves -->
+    <div class="leaves-container">
+        <div class="leaf"><svg viewBox="0 0 24 24" fill="#2ecc71"><path d="M17,8C8,10 5.9,16.17 3.82,21.34L5.71,22L6.66,19.7C7.14,19.87 7.64,20 8,20C19,20 22,3 22,3C21,5 14,5.25 9,6.25C4,7.25 2,11.5 2,13.5C2,15.5 3.75,17.25 3.75,17.25C7,8 17,8 17,8Z"/></svg></div>
+        <div class="leaf"><svg viewBox="0 0 24 24" fill="#27ae60"><path d="M17,8C8,10 5.9,16.17 3.82,21.34L5.71,22L6.66,19.7C7.14,19.87 7.64,20 8,20C19,20 22,3 22,3C21,5 14,5.25 9,6.25C4,7.25 2,11.5 2,13.5C2,15.5 3.75,17.25 3.75,17.25C7,8 17,8 17,8Z"/></svg></div>
+        <div class="leaf"><svg viewBox="0 0 24 24" fill="#1abc9c"><path d="M17,8C8,10 5.9,16.17 3.82,21.34L5.71,22L6.66,19.7C7.14,19.87 7.64,20 8,20C19,20 22,3 22,3C21,5 14,5.25 9,6.25C4,7.25 2,11.5 2,13.5C2,15.5 3.75,17.25 3.75,17.25C7,8 17,8 17,8Z"/></svg></div>
+        <div class="leaf"><svg viewBox="0 0 24 24" fill="#2ecc71"><path d="M17,8C8,10 5.9,16.17 3.82,21.34L5.71,22L6.66,19.7C7.14,19.87 7.64,20 8,20C19,20 22,3 22,3C21,5 14,5.25 9,6.25C4,7.25 2,11.5 2,13.5C2,15.5 3.75,17.25 3.75,17.25C7,8 17,8 17,8Z"/></svg></div>
+        <div class="leaf"><svg viewBox="0 0 24 24" fill="#27ae60"><path d="M17,8C8,10 5.9,16.17 3.82,21.34L5.71,22L6.66,19.7C7.14,19.87 7.64,20 8,20C19,20 22,3 22,3C21,5 14,5.25 9,6.25C4,7.25 2,11.5 2,13.5C2,15.5 3.75,17.25 3.75,17.25C7,8 17,8 17,8Z"/></svg></div>
+        <div class="leaf"><svg viewBox="0 0 24 24" fill="#1abc9c"><path d="M17,8C8,10 5.9,16.17 3.82,21.34L5.71,22L6.66,19.7C7.14,19.87 7.64,20 8,20C19,20 22,3 22,3C21,5 14,5.25 9,6.25C4,7.25 2,11.5 2,13.5C2,15.5 3.75,17.25 3.75,17.25C7,8 17,8 17,8Z"/></svg></div>
+        <div class="leaf"><svg viewBox="0 0 24 24" fill="#2ecc71"><path d="M17,8C8,10 5.9,16.17 3.82,21.34L5.71,22L6.66,19.7C7.14,19.87 7.64,20 8,20C19,20 22,3 22,3C21,5 14,5.25 9,6.25C4,7.25 2,11.5 2,13.5C2,15.5 3.75,17.25 3.75,17.25C7,8 17,8 17,8Z"/></svg></div>
+        <div class="leaf"><svg viewBox="0 0 24 24" fill="#27ae60"><path d="M17,8C8,10 5.9,16.17 3.82,21.34L5.71,22L6.66,19.7C7.14,19.87 7.64,20 8,20C19,20 22,3 22,3C21,5 14,5.25 9,6.25C4,7.25 2,11.5 2,13.5C2,15.5 3.75,17.25 3.75,17.25C7,8 17,8 17,8Z"/></svg></div>
+        <div class="leaf"><svg viewBox="0 0 24 24" fill="#1abc9c"><path d="M17,8C8,10 5.9,16.17 3.82,21.34L5.71,22L6.66,19.7C7.14,19.87 7.64,20 8,20C19,20 22,3 22,3C21,5 14,5.25 9,6.25C4,7.25 2,11.5 2,13.5C2,15.5 3.75,17.25 3.75,17.25C7,8 17,8 17,8Z"/></svg></div>
+        <div class="leaf"><svg viewBox="0 0 24 24" fill="#2ecc71"><path d="M17,8C8,10 5.9,16.17 3.82,21.34L5.71,22L6.66,19.7C7.14,19.87 7.64,20 8,20C19,20 22,3 22,3C21,5 14,5.25 9,6.25C4,7.25 2,11.5 2,13.5C2,15.5 3.75,17.25 3.75,17.25C7,8 17,8 17,8Z"/></svg></div>
+        <div class="leaf"><svg viewBox="0 0 24 24" fill="#27ae60"><path d="M17,8C8,10 5.9,16.17 3.82,21.34L5.71,22L6.66,19.7C7.14,19.87 7.64,20 8,20C19,20 22,3 22,3C21,5 14,5.25 9,6.25C4,7.25 2,11.5 2,13.5C2,15.5 3.75,17.25 3.75,17.25C7,8 17,8 17,8Z"/></svg></div>
+        <div class="leaf"><svg viewBox="0 0 24 24" fill="#1abc9c"><path d="M17,8C8,10 5.9,16.17 3.82,21.34L5.71,22L6.66,19.7C7.14,19.87 7.64,20 8,20C19,20 22,3 22,3C21,5 14,5.25 9,6.25C4,7.25 2,11.5 2,13.5C2,15.5 3.75,17.25 3.75,17.25C7,8 17,8 17,8Z"/></svg></div>
+        <div class="leaf"><svg viewBox="0 0 24 24" fill="#2ecc71"><path d="M17,8C8,10 5.9,16.17 3.82,21.34L5.71,22L6.66,19.7C7.14,19.87 7.64,20 8,20C19,20 22,3 22,3C21,5 14,5.25 9,6.25C4,7.25 2,11.5 2,13.5C2,15.5 3.75,17.25 3.75,17.25C7,8 17,8 17,8Z"/></svg></div>
+        <div class="leaf"><svg viewBox="0 0 24 24" fill="#27ae60"><path d="M17,8C8,10 5.9,16.17 3.82,21.34L5.71,22L6.66,19.7C7.14,19.87 7.64,20 8,20C19,20 22,3 22,3C21,5 14,5.25 9,6.25C4,7.25 2,11.5 2,13.5C2,15.5 3.75,17.25 3.75,17.25C7,8 17,8 17,8Z"/></svg></div>
+        <div class="leaf"><svg viewBox="0 0 24 24" fill="#1abc9c"><path d="M17,8C8,10 5.9,16.17 3.82,21.34L5.71,22L6.66,19.7C7.14,19.87 7.64,20 8,20C19,20 22,3 22,3C21,5 14,5.25 9,6.25C4,7.25 2,11.5 2,13.5C2,15.5 3.75,17.25 3.75,17.25C7,8 17,8 17,8Z"/></svg></div>
+    </div>
+
+    <!-- App Content -->
+    <div class="app-wrapper">
+        <!-- Header -->
+        <header class="app-header">
+            <span class="subtitle">🌱 Yapay Zeka Destekli</span>
+            <h1>Akıllı Tarım Destek Sistemi</h1>
+            <p class="description">Hava durumu, toprak analizi ve bitki sağlığı verileriyle desteklenen karar sistemi</p>
+        </header>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Left Panel - Data Input -->
+            <div class="glass-card" id="input-panel">
+                <h2 class="card-title"><span class="icon">📊</span> Veri Girişi</h2>
+                <p class="card-description">Şehir seçtiğinizde hava ve toprak verileri otomatik alınır. İsterseniz değerleri düzenleyebilirsiniz.</p>
+
+                <form id="predict-form">
+                    <!-- City & Crop Type -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="sehir-input">📍 Şehir Seçin</label>
+                            <div class="search-select" id="city-search-container">
+                                <input type="text" id="sehir-input" placeholder="Şehir arayın..." autocomplete="off">
+                                <div class="search-dropdown" id="city-dropdown"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="urun-tipi">🌾 Ürün Tipi</label>
+                            <select id="urun-tipi">
+                                <option value="bugday">🌾 Buğday</option>
+                                <option value="misir">🌽 Mısır</option>
+                                <option value="domates">🍅 Domates</option>
+                                <option value="biber">🌶️ Biber</option>
+                                <option value="patlican">🍆 Patlıcan</option>
+                                <option value="salatalik">🥒 Salatalık</option>
+                                <option value="patates">🥔 Patates</option>
+                                <option value="sogan">🧅 Soğan</option>
+                                <option value="uzum">🍇 Üzüm</option>
+                                <option value="zeytin">🫒 Zeytin</option>
+                                <option value="cay">🍵 Çay</option>
+                                <option value="findik">🌰 Fındık</option>
+                                <option value="pamuk">☁️ Pamuk</option>
+                                <option value="aycicegi">🌻 Ayçiçeği</option>
+                                <option value="arpa">🌿 Arpa</option>
+                                <option value="fasulye">🫘 Fasulye</option>
+                                <option value="nohut">🟤 Nohut</option>
+                                <option value="mercimek">🟠 Mercimek</option>
+                                <option value="kavun">🍈 Kavun</option>
+                                <option value="karpuz">🍉 Karpuz</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Weather Info -->
+                    <div class="weather-box" id="weather-box">
+                        <span class="weather-icon">🌤️</span>
+                        <div class="weather-info">
+                            <div class="weather-label" id="weather-label">Anlık Hava — Şehir seçin</div>
+                            <div class="weather-detail" id="weather-detail">Şehir seçildiğinde otomatik yüklenecek</div>
+                        </div>
+                    </div>
+
+                    <!-- Sliders -->
+                    <div class="slider-grid">
+                        <div class="slider-group">
+                            <div class="slider-header">
+                                <label>Toprak Nemi (%)</label>
+                                <span class="slider-value" id="toprak-nemi-val">50</span>
+                            </div>
+                            <input type="range" id="toprak_nemi" min="0" max="100" value="50" step="1">
+                        </div>
+
+                        <div class="slider-group">
+                            <div class="slider-header">
+                                <label>Toprak pH</label>
+                                <span class="slider-value" id="ph-val">6.5</span>
+                            </div>
+                            <input type="range" id="ph" min="3" max="10" value="6.5" step="0.1">
+                        </div>
+
+                        <div class="slider-group">
+                            <div class="slider-header">
+                                <label>Azot (mg/kg)</label>
+                                <span class="slider-value" id="nitrojen-val">40</span>
+                            </div>
+                            <input type="range" id="nitrojen" min="0" max="200" value="40" step="1">
+                        </div>
+
+                        <div class="slider-group">
+                            <div class="slider-header">
+                                <label>Fosfor (mg/kg)</label>
+                                <span class="slider-value" id="fosfor-val">60</span>
+                            </div>
+                            <input type="range" id="fosfor" min="0" max="200" value="60" step="1">
+                        </div>
+
+                        <div class="slider-group">
+                            <div class="slider-header">
+                                <label>Potasyum (mg/kg)</label>
+                                <span class="slider-value" id="potasyum-val">120</span>
+                            </div>
+                            <input type="range" id="potasyum" min="0" max="500" value="120" step="1">
+                        </div>
+
+                        <div class="slider-group">
+                            <div class="slider-header">
+                                <label>Bitki Sağlığı (0-100)</label>
+                                <span class="slider-value" id="bitki-sagligi-val">70</span>
+                            </div>
+                            <input type="range" id="bitki_sagligi" min="0" max="100" value="70" step="1">
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="btn-analyze" id="btn-analyze">
+                        <span class="btn-icon">🧠</span>
+                        <span class="btn-text">AI Analiz Başlat</span>
+                        <div class="spinner"></div>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Right Panel - AI Results -->
+            <div class="glass-card" id="results-panel">
+                <h2 class="card-title"><span class="icon">🤖</span> AI Sonuçları</h2>
+                <p class="card-description">Formu doldurup analiz başlattığınızda tahminler ve öneriler burada görünecek.</p>
+
+                <!-- Placeholder -->
+                <div class="results-placeholder" id="results-placeholder">
+                    <span class="placeholder-icon">🌿</span>
+                    <p>Yapay zeka analizi için sol panelden<br>verileri girin ve <strong>"AI Analiz Başlat"</strong> butonuna basın.</p>
+                </div>
+
+                <!-- Actual Results (scrollable) -->
+                <div class="result-content" id="result-content">
+                    <!-- Genel Değerlendirme -->
+                    <div class="result-item">
+                        <div class="result-label">📋 Genel Değerlendirme</div>
+                        <div class="result-value" id="res-ozet">—</div>
+                    </div>
+
+                    <!-- Güven Skoru -->
+                    <div class="result-item">
+                        <div class="result-label">📈 Güven Skoru</div>
+                        <div class="result-value" id="res-confidence-text">—</div>
+                        <div class="confidence-bar-container">
+                            <div class="confidence-bar">
+                                <div class="bar-fill" id="confidence-bar-fill"></div>
+                            </div>
+                            <div class="confidence-text">
+                                <span>0%</span>
+                                <span>100%</span>
+                            </div>
+                        </div>
+                        <div class="confidence-breakdown" id="confidence-breakdown"></div>
+                    </div>
+
+                    <!-- Hava Durumu -->
+                    <div class="result-item">
+                        <div class="result-label">🌡️ Hava Durumu</div>
+                        <div class="result-value" id="res-weather">—</div>
+                    </div>
+
+                    <!-- Seçili Ürün -->
+                    <div class="result-item">
+                        <div class="result-label">🌱 Seçili Ürün</div>
+                        <div class="result-value" id="res-crop">—</div>
+                    </div>
+
+                    <!-- Uyarılar -->
+                    <div class="result-item warning-box" id="warnings-section" style="display:none;">
+                        <div class="result-label">⚠️ Uyarılar</div>
+                        <div id="res-warnings"></div>
+                    </div>
+
+                    <!-- Gübreleme Tavsiyeleri -->
+                    <div class="recommendation-box fertilizer-box">
+                        <div class="rec-title">🧪 Gübreleme Tavsiyeleri</div>
+                        <div class="rec-text" id="res-gubre">—</div>
+                    </div>
+
+                    <!-- Genel Öneriler -->
+                    <div class="recommendation-box">
+                        <div class="rec-title">💡 Kapsamlı Öneriler</div>
+                        <div class="rec-text" id="res-recommendation">—</div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="js/main.js"></script>
 </body>

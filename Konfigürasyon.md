@@ -11,9 +11,8 @@ Bu proje, çiftçilerin toprak analiz verilerini takip etmesini ve OpenWeatherMa
 
 ### 2. Kullanılan Kütüphaneler ve Araçlar
 - **Frontend:** HTML5, CSS3, JavaScript (ES6+)
-- **Veri Görselleştirme:** [Chart.js](https://www.chartjs.org/) (Toprak nemi ve sıcaklık grafikleri için)
 - **HTTP İstemcisi:** [Axios](https://axios-http.com/) (OpenWeatherMap API istekleri için)
-- **Harita Entegrasyonu:** [Leaflet.js](https://leafletjs.com/) (Tarlanın konumunu ve hava durumunu haritada göstermek için)
+- **Kullanıcı Arayüzü:** Vanilla JS ile özel yazılmış bileşenler, CSS değişkenleri ile dinamik tema.
 
 ### 3. Başlangıç
 1. Projeyi bilgisayarınıza klonlayın: `git clone [repo-url]`
@@ -22,7 +21,7 @@ Bu proje, çiftçilerin toprak analiz verilerini takip etmesini ve OpenWeatherMa
 4. `.env.example` dosyasını `.env` olarak kopyalayın ve API anahtarınızı ekleyin.
 
 ### 4. Yapay Zeka (AI) Entegrasyonu
-Projemiz Python tabanlı bir makine öğrenmesi motoru barındırmaktadır.
-- **Model:** `scikit-learn` kullanılarak eğitilen karar ağaçları (Decision Trees) modeli.
-- **İletişim:** Node.js backend'i, Python scriptlerini `child_process` ile veya bir Flask API üzerinden tetiklemektedir.
+Projemiz Python tabanlı bir makine öğrenmesi motoru ve kural tabanlı bir uzman sistem barındırmaktadır.
+- **Model:** `TensorFlow` ve `Keras` kullanılarak oluşturulan Sinir Ağı (Neural Network) modeli ve tarımsal ideal aralıkları değerlendiren kural motoru.
+- **İletişim:** Node.js backend'i, Python makine öğrenmesi motorunu bir Flask API üzerinden tetiklemektedir.
 

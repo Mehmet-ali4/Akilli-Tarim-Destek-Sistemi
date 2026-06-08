@@ -1,6 +1,9 @@
 # Akıllı Tarım Destek Sistemi - Veritabanı Tasarımı
 
-Bu belge, projemizdeki yapay zeka tabanlı öneri sisteminin (hava durumu, toprak analizi ve bitki sağlığı verilerini kullanarak) ihtiyaç duyduğu ilişkisel veritabanı yapısını ve tablolar arası ilişkileri (ER Diagram Mantığı) detaylandırmaktadır.
+> [!WARNING]
+> **Önemli Not:** Bu belgede yer alan veritabanı tasarımı, sistemin **gelecek sürümü** (Future Release) için planlanan mimariyi yansıtmaktadır. Projenin şu anki güncel (v1.0) sürümü tamamen durumsuz (stateless) çalışmakta olup herhangi bir veritabanı bağlantısı içermemektedir.
+
+Bu belge, projemizdeki yapay zeka tabanlı öneri sisteminin (hava durumu, toprak analizi ve bitki sağlığı verilerini kullanarak) ilerleyen aşamalarda ihtiyaç duyacağı ilişkisel veritabanı yapısını ve tablolar arası ilişkileri (ER Diagram Mantığı) detaylandırmaktadır.
 
 ## 1. Veritabanı Tabloları
 

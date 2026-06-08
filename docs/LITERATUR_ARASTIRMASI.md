@@ -64,12 +64,12 @@ Küresel IoT cihaz sayısı 2015'teki 3.6 milyardan 2024'te 18.6 milyara yüksel
 
 ## 6. Projeye Katkısı
 
-Bu literatür araştırması, Akıllı Tarım Destek Sistemi'nin tasarımında aşağıdaki kararların alınmasına temel oluşturmaktadır:
+Bu literatür araştırması, Akıllı Tarım Destek Sistemi'nin tasarımında aşağıdaki vizyon ve kararların alınmasına temel oluşturmaktadır:
 
-- **Algoritma seçimi:** Random Forest ve XGBoost algoritmaları öncelikli olarak değerlendirilecektir.
-- **Veri parametreleri:** Toprak pH, N-P-K, nem ve hava durumu verileri sistemin girdilerini oluşturacaktır.
-- **Altyapı:** Bulut tabanlı veri işleme ve IoT entegrasyonu planlanmaktadır.
-- **Doğruluk hedefi:** Literatürdeki %99+ doğruluk oranları referans alınacaktır.
+- **Algoritma seçimi (Gelecek Sürüm):** İlerleyen versiyonlarda Random Forest ve XGBoost gibi gelişmiş makine öğrenmesi algoritmaları kullanılarak veri setlerinin eğitilmesi hedeflenmektedir. (v1.0 sürümünde kural tabanlı uzman sistem ve Keras Sinir Ağı prototipi kullanılmaktadır).
+- **Veri parametreleri:** Toprak pH, N-P-K, nem ve hava durumu verileri sistemin ana girdilerini oluşturmaktadır.
+- **Altyapı (Gelecek Sürüm):** Tam otonom bulut tabanlı veri işleme ve IoT entegrasyonu (sensörlerden otomatik veri çekme) sistemin nihai amacıdır.
+- **Doğruluk hedefi:** Gerçek veritabanı olgunlaştığında literatürdeki %99+ doğruluk oranlarına ulaşılması hedeflenmektedir.
 
 ---
 

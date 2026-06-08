@@ -1,45 +1,48 @@
-# Akıllı Tarım Destek Sistemi - Veri Toplama ve Entegrasyon Tasarım Belgesi
+# Akıllı Tarım Destek Sistemi - Veri Toplama ve İşleme Tasarımı
 
-## 1. Veri Kaynakları, Formatlar ve Toplama Sıklığı
+Bu doküman, sistemin çalışması için gerekli olan verilerin toplanması, doğrulanması ve işlenmesi aşamalarını açıklamaktadır.
 
-| Veri Tipi | Veri Kaynağı | Veri Formatı | Toplama Sıklığı | Entegrasyon Yöntemi (Java & SQL) |
-| :--- | :--- | :--- | :--- | :--- |
-| **Hava Durumu** | OpenWeatherMap API | JSON | 3 Saatte Bir | Java HttpClient ile HTTP GET isteği atılarak alınır, SQL tablosuna yazılır. |
-| **Toprak Analizi** | IoT Sensörleri | JSON / Csv | 30 Dakikada Bir | Sensörlerden gelen veriler Gateway üzerinden dinlenir. |
-| **Bitki Sağlığı** | Kullanıcı Girdisi / Harici Görüntü İşleme API'si | Multipart (Görsel) / JSON | Günlük (veya Manuel) | Fotoğraflar AI servisine gönderilir, dönen sağlık skoru (JSON) SQL veri tabanına kaydedilir. |
+---
 
-## 2. Olası Hataları Ele Alma Stratejileri (Error Handling)
+## 1. Veri Kaynakları
+Mevcut sistem, çalışabilmek için iki temel veri kaynağı kullanmaktadır:
 
-*   **API Bağlantı Hataları:** Hava durumu API'sine erişilemediğinde Java tarafında `try-catch` blokları ve *Retry* mekanizması kurulacaktır. 3 başarısız denemeden sonra sistem, SQL'de kayıtlı olan son geçerli veriyi kullanacaktır.
-*   **Sensör Verisi Kesintisi:** Sensörlerden veri gelmezse, "Sensör bağlantı hatası" fırlatılacak ve kullanıcı uyarılacaktır.
-*   **Veri Formatı Uyuşmazlıkları:** Hatalı veriler reddedilip hata log dosyasına (`error_logs` tablosuna) yazılacaktır.
+### 1.1. Manuel Kullanıcı Girişi (Form Verileri)
+Kullanıcı, tarla koşullarını temsil eden sensör ve toprak değerlerini frontend arayüzü üzerinden sisteme girer. İlerleyen versiyonlarda bu değerlerin IoT cihazlarından (IoT Hub / MQTT) otomatik olarak çekilmesi planlanmaktadır, ancak v1.0 sürümünde veriler kullanıcı tarafından sağlanır.
 
-## 3. Veri Toplama Süreci Akış Diyagramı
+*   **Sıcaklık (°C):** Havanın mevcut sıcaklığı (Hava durumu API'sinden çekilen veri ile otomatik doldurulabilir)
+*   **Nem (%):** Havanın bağıl nem oranı
+*   **Toprak Nemi (%):** Topraktaki nem oranı (Hesaplanabilir veya manuel girilir)
+*   **pH:** Toprağın asitlik derecesi (Manuel giriş)
+*   **Azot, Fosfor, Potasyum (N, P, K):** Topraktaki temel besin elementleri (mg/kg) (Manuel giriş)
+*   **Bitki Sağlığı Skoru (0-100):** Kullanıcının gözlemlerine dayalı sağlık skoru
 
-```mermaid
-graph TD;
-    A[Zamanlayıcı / Scheduler Tetiklenmesi] --> B{Veri Kaynağı Seçimi};
-    
-    B -->|Hava Durumu API| C[REST API GET İsteği];
-    B -->|Toprak Sensörleri| D[Sensör Verisi Okuma];
-    B -->|Bitki Sağlığı| E[Kullanıcı Görsel Yüklemesi];
+### 1.2. Dış API Verileri (OpenWeatherMap)
+Kullanıcı bir şehir seçtiğinde veya "Konumumu Bul" (Geolocation) özelliğini kullandığında, sistem anlık hava durumu verilerini çekmek için OpenWeatherMap API'sini kullanır.
 
-    C --> F{Yanıt Başarılı mı?};
-    F -->|Evet| G[JSON Verisini Parse Et];
-    F -->|Hayır| H[Logla ve Son Geçerli Veriyi Kullan];
+*   **Protokol:** HTTP GET (Axios kullanılarak)
+*   **Alınan Veriler:** Sıcaklık (°C) ve Hava Nemi (%)
 
-    D --> I{Sensör Aktif mi?};
-    I -->|Evet| J[Veriyi Doğrula / Validate];
-    I -->|Hayır| K[Sistem Uyarısı Üret];
+---
 
-    E --> L[AI Analiz API'sine Gönder];
-    L --> M[Sağlık Skorunu Al];
+## 2. Veri Akışı ve İşleme Mimarisi
 
-    G --> N[Standart Veri Modeline Dönüştür];
-    J --> N;
-    M --> N;
+Sistemin veri işleme mimarisi anlık analiz (stateless) prensibine dayanmaktadır.
 
-    N --> O[(SQL Veri Tabanına Kaydet)];
-    H --> O;
-    
-    O --> P[Akıllı Tarım Analiz Motorunu Çalıştır];
+1.  **Veri Toplama:** Frontend (JavaScript) arayüzündeki form aracılığıyla kullanıcı tarafından girilen veriler (veya API'den çekilen hava durumu bilgileri) toplanır.
+2.  **Veri Formatlama:** Form verileri JSON nesnesine dönüştürülür.
+3.  **İletim:** Frontend, JSON verisini Node.js Backend API'sine (`POST /api/predict`) Axios ile iletir.
+4.  **Backend Proxy:** Node.js backend, gelen veriyi doğrudan (veya gerekirse formatlayarak) Python tabanlı Yapay Zeka (Flask) servisine iletir.
+5.  **Yapay Zeka Analizi:**
+    *   Python Flask servisi, TensorFlow modeli ve kural tabanlı uzman sistem aracılığıyla gelen verileri analiz eder.
+    *   İdeal bitki koşullarıyla (ürüne göre) karşılaştırır.
+    *   Sulama kararı, gübre tavsiyesi ve genel durum skorunu hesaplar.
+6.  **Yanıt:** AI servisi analiz sonucunu Node.js backend'ine, oradan da frontend'e JSON olarak döndürür ve kullanıcı arayüzünde gösterilir.
+
+---
+
+## 3. Gelecek Vizyonu (Veri Toplama)
+Projenin sonraki sürümlerinde (v2.x) sistemin aşağıdaki şekilde evrilmesi planlanmaktadır:
+*   **IoT Entegrasyonu:** Tarlaya yerleştirilecek sensörlerin (toprak nemi, pH, sıcaklık) MQTT protokolü ile doğrudan sunucuya bağlanması.
+*   **Otomatik Veri Toplama (Cron Jobs):** Sensör verilerinin 3 saatte bir otomatik okunup veritabanına kaydedilmesi.
+*   **Veri Kalıcılığı:** Toplanan verilerin SQL/NoSQL veritabanında saklanarak zaman serisi analizi ve geçmişe dönük raporlama yapılması.
